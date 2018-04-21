@@ -11,20 +11,20 @@
     <div class="container">
         <h1>Мой первый блог</h1>
         <div>
-            <form method="post" action="index.php?action=add">
+            <form method="post" action="index.php?action=<?=$_GET['action']?>&id=<?=$_GET['id']?>">
                 <label>
 
                     <b>Название</b><br>
-                    <input type="text" name="title" value="" size="30" class="form-item" autofocus required>
+                    <input type="text" name="title" value="<?=$article['title']?>" size="30" class="form-item" autofocus required>
 
                 </label><br>
                 <label>
                     <b>Дата</b><br>
-                    <input type="date" name="date" value="" style="width:250px" class="form-item" required>
+                    <input type="date" name="date" value="<?=$article['date']?>" style="width:250px" class="form-item" required>
                 </label><br>
                 <label>
                     <b>Содержимое</b><br>
-                    <textarea class="form-item" name="content" rows="10" cols="45" required></textarea>
+                    <textarea class="form-item" name="content" rows="10" cols="45" required><?=$article['content']?></textarea>
                 </label><br>
                 <label>
                     <input type="submit" value="Сохранить" class="btn">
