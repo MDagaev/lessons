@@ -15,7 +15,7 @@
                 <label>
 
                     <b>Название</b><br>
-                    <input type="text" name="title" value="<?=$article['title']?>" size="30" class="form-item" autofocus required>
+                    <input type="text" name="title" value="<?php if(!empty($article)) echo $article['title']?>" size="30" class="form-item" autofocus required>
 
                 </label><br>
                 <label>
@@ -24,7 +24,7 @@
                 </label><br>
                 <label>
                     <b>Содержимое</b><br>
-                    <textarea class="form-item" name="content" rows="10" cols="45" required><?=$article['content']?></textarea>
+                    <textarea class="form-item" name="content" rows="10" cols="45" required><?php if(!empty($article)) echo $article['content']?></textarea>
                 </label><br>
                 <label>
                     <input type="submit" value="Сохранить" class="btn">

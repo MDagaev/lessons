@@ -1,4 +1,5 @@
 <?php
+//Забрать все статьи из базы
 function articles_all($link)
 {
     //Запрос
@@ -21,7 +22,7 @@ function articles_all($link)
     return $articles;
 
 }
-
+//Взять одну статью из базу
 function articles_get($link, $id_article)
 {
     //Запрос
@@ -35,7 +36,7 @@ function articles_get($link, $id_article)
     return $article;
 }
 
-
+//Добавить новую статья в базу
 function articles_new($link, $title, $date, $content)
 {
     //Подготовка
@@ -61,7 +62,7 @@ function articles_new($link, $title, $date, $content)
 
     return true;
 }
-
+//Редактировать статью
 function articles_edit($link, $id, $title, $date, $content)
 {
    //Подготовка
@@ -87,10 +88,29 @@ function articles_edit($link, $id, $title, $date, $content)
     return mysqli_affected_rows($link);
 }
 
-
-function articles_delet($id)
+//удалить статью
+function articles_delete($link, $id)
 {
+    $id = (int)$id;
+    //Проверка
+    if($id == 0){
+        return false;
+    }
 
+    //Запрос
+    $query = sprintf("DELETE FROM articles WHERE id='%d'", $id );
+    $result = mysqli_query($link, $query);
+
+    if (!$result){
+        die(mysqli_error($link));
+    }
+
+    return mysqli_affected_rows($link);
 }
 
+//Ограничить статью 500 символами
+function articles_intro($text, $len = 4000)
+{
+    return mb_substr($text, 0, $len);
+}
 ?>
